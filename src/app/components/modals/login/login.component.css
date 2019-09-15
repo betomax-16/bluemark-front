@@ -1,0 +1,42 @@
+.content-modal,.content-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botonera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.button {
+    margin-top: 15px;
+    color: #fff;
+}
+
+.ok {
+    margin-right: 5px;
+    background-color:rgb(205, 77, 162);
+}
+
+.ok:hover {
+    background-color: rgb(156, 59, 123);
+}
+
+.recover {
+    margin-top: 10px;
+    cursor: pointer;
+    font-style: italic;
+    text-decoration-line: underline;
+}
+
+.title {
+    color: #fff;
+}
+
+.full-width {
+    display: block;
+}
