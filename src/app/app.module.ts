@@ -13,14 +13,21 @@ import { HttpClientModule } from '@angular/common/http';
 // Providers
 import { ShareLoginService } from './services/shareLogin.service';
 import { TokenService } from './services/token.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth-guard';
+import { NotAuthGuard } from './guards/notAuth-guard';
 
 // Controllers
 import { UserController } from './controllers/user.controller';
+import { SignupComponent } from './components/modals/signup/signup.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +41,14 @@ import { UserController } from './controllers/user.controller';
   providers: [
     ShareLoginService,
     TokenService,
+    AuthService,
+    AuthGuard,
+    NotAuthGuard,
     UserController
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   bootstrap: [AppComponent]
 })

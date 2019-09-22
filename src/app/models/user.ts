@@ -1,16 +1,15 @@
 export class User {
     constructor(
         public name?: string,
-        public lastname?: string,
-        public phone?: string,
+        public firstLastName?: string,
+        public secondLastName?: string,
+        public birthdate?: Date,
         public email?: string,
+        public rol?: string,
         public sex?: string,
+        public imageUrl?: string,
         public password?: string,
-        public birthdate?: string,
-        public createdAt?: string,
-        public image?: string,
-        public confirm?: boolean,
-        // tslint:disable-next-line:variable-name
+        // tslint:disable-next-line: variable-name
         public _id?: string
     ) {}
 }

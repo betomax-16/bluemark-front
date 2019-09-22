@@ -1,0 +1,49 @@
+<div class="content">
+    <h1 class="title-phone">Edición de datos personales.</h1>
+    <div>
+        <div class="photo">
+            <img matTooltip="Cambiar foto" [src]="imageUrl" alt="foto_perfil" (click)="openFile()">
+        </div>
+        <mat-progress-bar *ngIf="imagePercentOk()"
+            class="example-margin"
+            [mode]="mode"
+            [value]="imagePercent">
+        </mat-progress-bar>
+    </div>    
+    <form>
+        <div class="content-form">
+            <h1 class="title">Edición de datos personales.</h1>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Nombre" [(ngModel)]="user.name" name="name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Apellido Paterno" [(ngModel)]="user.firstLastName" name="firstlastname">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Apellidos Materno" [(ngModel)]="user.secondLastName" name="secondlastname">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="password" matInput placeholder="Contraseña" [(ngModel)]="user.password" name="password">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Sexo" [(value)]="user.sex">
+                  <mat-option *ngFor="let sex of sexs" [value]="sex.value">{{sex.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <input #inputFile class="file" type="file" name="photo" (change)="onChangeFile($event)" accept="image/*">
+            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="save()">
+                <i class="material-icons">
+                    done
+                </i>
+            </button>
+        </div>
+    </form>
+</div>

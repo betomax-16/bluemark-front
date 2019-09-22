@@ -1,17 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatDialog } from '@angular/material';
-import { FormControl, FormGroupDirective, NgForm, Validators, RequiredValidator } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-export class MyErrorStateMetcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmetted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmetted));
-  }
-}
+import { UserController } from '../../../controllers/user.controller';
+import { ShareLoginService } from '../../../services/shareLogin.service';
+import { User } from 'src/app/models/user';
 
 @Injectable()
 @Component({
@@ -21,22 +15,43 @@ export class MyErrorStateMetcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
 
-  user = '';
-  pass = '';
-  emailFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  matcher = new MyErrorStateMetcher();
+  user: User = new User();
   constructor(private httpClient: HttpClient,
               private router: Router,
               public dialog: MatDialog,
+              public dialogRef: MatDialogRef<LoginComponent>,
+              public controller: UserController,
+              public shareLoginService: ShareLoginService,
+              public notificacionSnackBar: MatSnackBar,
               @Inject( MAT_DIALOG_DATA ) public data: any) { }
 
   ngOnInit() {
   }
 
-  Click() {
+  async login() {
+    this.controller.login(this.user).subscribe(res => {
+      const r: any = res;
+      const user: User = res;
+      this.showMessage('Login exitoso.', 2000);
+      this.dialogRef.close(user);
+      localStorage.setItem('token', r.token);
+      this.shareLoginService.sendLogin(true);
+      this.shareLoginService.sendUser(user);
+      this.router.navigate(['user/profile']);
+    }, error => {
+      if (error.error.errors) {
+        error.error.errors.forEach(err => {
+          this.showMessage(err.message, 5000);
+        });
+      } else {
+        this.showMessage(error.error.message, 5000);
+      }
+    });
+  }
 
+  showMessage(message: string, duration: number) {
+    this.notificacionSnackBar.open( message, '', {
+      duration,
+    } );
   }
 }

@@ -17,12 +17,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule} from '@angular/material/slider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
     // tslint:disable-next-line:max-line-length
-    imports: [MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCardModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatTabsModule, MatExpansionModule, MatDividerModule, MatListModule, MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSliderModule],
+    imports: [MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCardModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatTabsModule, MatExpansionModule, MatDividerModule, MatListModule, MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSliderModule, MatProgressBarModule],
     // tslint:disable-next-line:max-line-length
-    exports: [MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCardModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatTabsModule, MatExpansionModule, MatDividerModule, MatListModule, MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSliderModule],
+    exports: [MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatCardModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatTabsModule, MatExpansionModule, MatDividerModule, MatListModule, MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSliderModule, MatProgressBarModule],
 })
 
 export class MaterialModule { }

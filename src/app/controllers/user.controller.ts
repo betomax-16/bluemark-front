@@ -7,9 +7,10 @@ import {User} from '../models/user';
 export class UserController {
     usuario: User[];
     private headers: HttpHeaders;
+    private baseUrl: string;
 
     constructor(private http: HttpClient) {
-
+        this.baseUrl = 'http://localhost:3000';
     }
 
     newHeader() {
@@ -19,8 +20,8 @@ export class UserController {
                             .set('Authorization', localStorage.getItem('token'));
     }
 
-    login(usuario) {
-        return this.http.post('/api/login', usuario);
+    login(usuario: User) {
+        return this.http.post(this.baseUrl + '/api/login', usuario);
     }
 
     // editar(usuario) {
@@ -28,15 +29,15 @@ export class UserController {
     //     return this.http.put('/api/user', usuario, {headers: this.headers});
     // }
 
-    // registrar(usuario) {
-    //     return this.http.post('/api/signup', usuario);
-    // }
+    registrar(usuario) {
+        return this.http.post(this.baseUrl + '/api/users', usuario);
+    }
 
 
-    // getInfo() {
-    //     this.newHeader();
-    //     return this.http.get<User>(`/api/user`, {headers: this.headers});
-    // }
+    getInfo() {
+        this.newHeader();
+        return this.http.post<User>(this.baseUrl + `/api/profile`, null, {headers: this.headers});
+    }
 
     // // Usuarios public
     // publicUser(id) {

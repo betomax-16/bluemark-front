@@ -3,10 +3,10 @@
         <form>
             <div class="content-form">
                 <mat-form-field class="full-width input-login">
-                    <input type="email" matInput placeholder="Email" name="email">
+                    <input type="email" matInput placeholder="Email" [(ngModel)]="user.email" name="email">
                 </mat-form-field>
                 <mat-form-field class="full-width input-login">
-                    <input type="password" matInput placeholder="Contraseña" name="password">
+                    <input type="password" matInput placeholder="Contraseña" [(ngModel)]="user.password" name="password">
                 </mat-form-field>
                 <div class="botonera">
                     <button class="button ok" mat-stroked-button color="primary" (click)="login()">Ingresar</button>

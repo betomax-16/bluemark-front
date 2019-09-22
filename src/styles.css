@@ -27,3 +27,15 @@ body {
 .content-modal .mat-form-field.mat-focused .mat-form-field-ripple {
     background-color: #fff;
 }
+
+
+.modalSignup {
+    width: 400px;
+}
+
+.modalSignup .mat-dialog-container {
+    background: rgb(51, 143, 160);
+    color: #fff;
+    border-radius: 15px;
+    border: 2px solid #fff;
+}

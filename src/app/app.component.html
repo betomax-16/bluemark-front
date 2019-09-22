@@ -25,6 +25,7 @@
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
             <mat-nav-list>
+                <div class="nav-list-logout" (click)="logout()" *ngIf="logged"><span>Salir</span></div>
                 <a mat-list-item routerLink=".">Empresas</a>
                 <a mat-list-item routerLink=".">Perfil</a>
                 <a mat-list-item routerLink=".">Cuponera</a>
