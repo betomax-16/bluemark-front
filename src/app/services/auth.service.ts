@@ -22,4 +22,14 @@ export class AuthService {
         return false;
       }
   }
+
+  public getRol(): string | null {
+    try {
+      const token = localStorage.getItem('token');
+      const payload: any = jwt(token);
+      return payload.rol;
+    } catch (e) {
+      return null;
+    }
+  }
 }

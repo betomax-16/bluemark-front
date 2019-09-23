@@ -1,0 +1,16 @@
+<div class="content-commentaries">
+    <h1 class="title">Usuarios</h1>
+    <div class="commentary" *ngFor="let user of users">
+        <div class="info" (click)="showUser(user)">
+            <div class="content-image">
+                <img *ngIf="!user.imageUrl" [src]="imageUrl" alt="" class="user-image">
+                <img *ngIf="user.imageUrl" [src]="user.imageUrl" alt="" class="user-image">
+            </div>
+            <div>
+                <span class="product">{{ user.name + ' ' + user.firstLastName + ' ' + user.secondLastName }}</span>
+            </div>
+        </div>
+        <div class="delete" (click)="delete(user)"><i class="material-icons">close</i></div>
+    </div>
+    <button class="add" mat-fab (click)="signup()"><i class="material-icons">add</i></button>
+</div>

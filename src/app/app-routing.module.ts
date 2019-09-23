@@ -5,9 +5,12 @@ import { NotAuthGuard } from './guards/notAuth-guard';
 
 // Components app import
 import {ProfileComponent} from './components/user/profile/profile.component';
+import {ListComponent} from './components/user/list/list.component';
 
 const routes: Routes = [
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'admin/user', component: ListComponent, canActivate: [AuthGuard] },
+  { path: 'user/:id', component: ProfileComponent },
 ];
 
 @NgModule({

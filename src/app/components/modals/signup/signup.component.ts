@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  isAdmin = false;
   date = new FormControl(new Date());
   user: User;
 
@@ -32,10 +33,12 @@ export class SignupComponent implements OnInit {
       const r: any = res;
       this.showMessage('Registro exitoso.', 2000);
       this.dialogRef.close(res);
-      localStorage.setItem('token', r.token);
-      this.shareLoginService.sendLogin(true);
-      this.shareLoginService.sendUser(r.user);
-      this.router.navigate(['user/profile']);
+      if (!this.isAdmin) {
+        localStorage.setItem('token', r.token);
+        this.shareLoginService.sendLogin(true);
+        this.shareLoginService.sendUser(r.user);
+        this.router.navigate(['user/profile']);
+      }
     }, error => {
       error.error.errors.forEach(err => {
         this.showMessage(err.message, 5000);
