@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserController } from '../../../controllers/user.controller';
 import { ShareLoginService } from '../../../services/shareLogin.service';
 import { User } from 'src/app/models/user';
+import { AuthService } from '../../../services/auth.service';
 
 @Injectable()
 @Component({
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
               public controller: UserController,
               public shareLoginService: ShareLoginService,
               public notificacionSnackBar: MatSnackBar,
+              public authService: AuthService,
               @Inject( MAT_DIALOG_DATA ) public data: any) { }
 
   ngOnInit() {
@@ -35,8 +37,9 @@ export class LoginComponent implements OnInit {
       this.showMessage('Login exitoso.', 2000);
       this.dialogRef.close(user);
       localStorage.setItem('token', r.token);
+      const rol: string = this.authService.getRol();
       this.shareLoginService.sendLogin(true);
-      this.shareLoginService.sendUser(user);
+      this.shareLoginService.sendUser(rol);
       this.router.navigate(['user/profile']);
     }, error => {
       if (error.error.errors) {

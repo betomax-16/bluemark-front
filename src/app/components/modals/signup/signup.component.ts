@@ -29,21 +29,30 @@ export class SignupComponent implements OnInit {
 
   save() {
     this.user.birthdate = this.date.value;
-    this.controller.registrar(this.user).subscribe(res => {
-      const r: any = res;
-      this.showMessage('Registro exitoso.', 2000);
-      this.dialogRef.close(res);
-      if (!this.isAdmin) {
+    if (!this.isAdmin) {
+      this.controller.signup(this.user).subscribe(res => {
+        const r: any = res;
+        this.dialogRef.close(res);
         localStorage.setItem('token', r.token);
         this.shareLoginService.sendLogin(true);
         this.shareLoginService.sendUser(r.user);
         this.router.navigate(['user/profile']);
-      }
-    }, error => {
-      error.error.errors.forEach(err => {
-        this.showMessage(err.message, 5000);
+        this.showMessage('Registro exitoso.', 2000);
+      }, error => {
+        error.error.errors.forEach(err => {
+          this.showMessage(err.message, 5000);
+        });
       });
-    });
+    } else {
+      this.controller.registrar(this.user).subscribe(res => {
+        this.dialogRef.close(res);
+        this.showMessage('Registro exitoso.', 2000);
+      }, error => {
+        error.error.errors.forEach(err => {
+          this.showMessage(err.message, 5000);
+        });
+      });
+    }
   }
 
   showMessage(message: string, duration: number) {

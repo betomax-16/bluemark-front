@@ -20,6 +20,10 @@ export class UserController {
                             .set('Authorization', localStorage.getItem('token'));
     }
 
+    signup(usuario: User) {
+        return this.http.post(this.baseUrl + '/api/signup', usuario);
+    }
+
     login(usuario: User) {
         return this.http.post(this.baseUrl + '/api/login', usuario);
     }
@@ -30,7 +34,7 @@ export class UserController {
     }
 
     registrar(usuario: User) {
-        return this.http.post(this.baseUrl + '/api/users', usuario);
+        return this.http.post<User>(this.baseUrl + '/api/users', usuario);
     }
 
 
@@ -40,20 +44,24 @@ export class UserController {
     }
 
     getUsers() {
-        return this.http.get<User[]>(this.baseUrl + `/api/users`);
+        this.newHeader();
+        return this.http.get<User[]>(this.baseUrl + `/api/users`, {headers: this.headers});
     }
 
     // Usuarios public
     publicUser(id) {
-        return this.http.get<User>(this.baseUrl + `/api/users/${id}`);
+        this.newHeader();
+        return this.http.get<User>(this.baseUrl + `/api/users/${id}`, {headers: this.headers});
     }
 
     editUser(usuario: User) {
-        return this.http.put<User>(this.baseUrl + `/api/users/${usuario._id}`, usuario);
+        this.newHeader();
+        return this.http.put<User>(this.baseUrl + `/api/users/${usuario._id}`, usuario, {headers: this.headers});
     }
 
     deleteUser(id) {
-        return this.http.delete(this.baseUrl + `/api/users/${id}`);
+        this.newHeader();
+        return this.http.delete(this.baseUrl + `/api/users/${id}`, {headers: this.headers});
     }
     // recoveryPass(usuario) {
     //     return this.http.put<User>(`/api/passrecovery`, usuario);

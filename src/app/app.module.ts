@@ -17,6 +17,9 @@ import { AuthService } from './services/auth.service';
 import { UploadService } from './services/upload.service';
 import { AuthGuard } from './guards/auth-guard';
 import { NotAuthGuard } from './guards/notAuth-guard';
+import { AdminGuard } from './guards/admin-guard';
+import { CompanyGuard } from './guards/company-guard';
+import { UserGuard } from './guards/user-guard';
 
 // Controllers
 import { UserController } from './controllers/user.controller';
@@ -48,6 +51,9 @@ import { ListComponent } from './components/user/list/list.component';
     UploadService,
     AuthGuard,
     NotAuthGuard,
+    AdminGuard,
+    CompanyGuard,
+    UserGuard,
     UserController
   ],
   entryComponents: [

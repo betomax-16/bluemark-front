@@ -5,10 +5,10 @@ import { User } from '../models/user';
 @Injectable()
 export class ShareLoginService {
     logged: false;
-    user: User = new User();
+    rol: string ;
 
     loggedSource = new BehaviorSubject<boolean>( this.logged );
-    userSource = new BehaviorSubject<User>( this.user );
+    rolSource = new BehaviorSubject<string>( this.rol );
 
     constructor() {
     }
@@ -17,7 +17,7 @@ export class ShareLoginService {
         this.loggedSource.next( login );
     }
 
-    sendUser( user: User ) {
-        this.userSource.next( user );
+    sendUser( rol: string ) {
+        this.rolSource.next( rol );
     }
 }

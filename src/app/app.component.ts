@@ -16,6 +16,7 @@ import { User } from './models/user';
 })
 export class AppComponent implements OnDestroy, OnInit {
   logged: boolean;
+  rol: string;
   mobileQuery: MediaQueryList;
   searchText: string;
   @ViewChild('snav', {static: false}) snav: MatSidenav;
@@ -34,15 +35,24 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    const token: string = localStorage.getItem('token');
+    // tslint:disable-next-line: triple-equals
+    if (token != '') {
+      this.shareLoginService.sendLogin(this.authService.isAuthenticated());
+      this.shareLoginService.sendUser(this.authService.getRol());
+    }
     this.shareLoginService.loggedSource.subscribe(logged => {
       this.logged = this.authService.isAuthenticated();
+    });
+    this.shareLoginService.rolSource.subscribe(rol => {
+      this.rol = rol;
     });
   }
 
   logout() {
     localStorage.clear();
     this.shareLoginService.sendLogin(false);
-    this.shareLoginService.sendUser(new User());
+    this.shareLoginService.sendUser('');
     this.snav.close();
     this.router.navigate(['/']);
   }
