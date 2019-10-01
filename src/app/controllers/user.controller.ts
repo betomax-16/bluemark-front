@@ -28,19 +28,18 @@ export class UserController {
         return this.http.post(this.baseUrl + '/api/login', usuario);
     }
 
-    editar(usuario: User) {
+    editar(usuario: any) {
         this.newHeader();
-        return this.http.put<User>(this.baseUrl + '/api/profile', usuario, {headers: this.headers});
+        return this.http.put(this.baseUrl + '/api/profile', usuario, {headers: this.headers});
     }
 
     registrar(usuario: User) {
         return this.http.post<User>(this.baseUrl + '/api/users', usuario);
     }
 
-
     getInfo() {
         this.newHeader();
-        return this.http.post<User>(this.baseUrl + `/api/profile`, null, {headers: this.headers});
+        return this.http.post(this.baseUrl + `/api/profile`, null, {headers: this.headers});
     }
 
     getUsers() {
@@ -54,9 +53,9 @@ export class UserController {
         return this.http.get<User>(this.baseUrl + `/api/users/${id}`, {headers: this.headers});
     }
 
-    editUser(usuario: User) {
+    editUser(usuario: any) {
         this.newHeader();
-        return this.http.put<User>(this.baseUrl + `/api/users/${usuario._id}`, usuario, {headers: this.headers});
+        return this.http.put<any>(this.baseUrl + `/api/users/${usuario._id}`, usuario, {headers: this.headers});
     }
 
     deleteUser(id) {

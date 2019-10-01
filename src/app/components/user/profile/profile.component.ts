@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
 import { User } from 'src/app/models/user';
 import { UserController } from '../../../controllers/user.controller';
+import { CompanyController } from '../../../controllers/company.controller';
+import { AdminController } from '../../../controllers/admin.controller';
+import { CredentialController } from '../../../controllers/credential.controller';
 import { UploadService } from '../../../services/upload.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -13,7 +16,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  user: User;
+  user: any;
   date = new FormControl();
   idUser: string = null;
   sexs = [
@@ -26,10 +29,13 @@ export class ProfileComponent implements OnInit {
   imageUrl = 'https://images.vexels.com/media/users/3/137047/isolated/preview/5831a17a290077c646a48c4db78a81bb-perfil-de-usuario-blue-icon-by-vexels.png';
   mode = 'determinate';
   constructor(private controller: UserController,
+              private companyController: CompanyController,
+              private adminControlles: AdminController,
+              private credentialController: CredentialController,
               private uploadService: UploadService,
               private route: ActivatedRoute,
               public notificacionSnackBar: MatSnackBar) {
-    this.user = new User();
+    this.user = {};
   }
 
   ngOnInit() {
@@ -37,12 +43,34 @@ export class ProfileComponent implements OnInit {
       params => {
         this.idUser = params.id;
         if (this.idUser) {
-          this.controller.publicUser(this.idUser).subscribe(user => {
-            this.user = user;
-            this.user.password = '';
-            this.user.sex = this.user.sex ? this.user.sex : 'male';
-            this.date = new FormControl(this.user.birthdate);
-            this.imageUrl = this.user.imageUrl ? this.user.imageUrl : this.imageUrl;
+          this.credentialController.getRol(this.idUser).subscribe(res => {
+            switch (res.rol) {
+              case 'ADMIN':
+                this.adminControlles.getAdmin(this.idUser).subscribe(user => {
+                  this.user = user;
+                  this.user.password = '';
+                  this.imageUrl = this.user.imageUrl ? this.user.imageUrl : this.imageUrl;
+                });
+                break;
+              case 'COMPANY':
+                this.companyController.getCompany(this.idUser).subscribe(user => {
+                  this.user = user;
+                  this.user.password = '';
+                  this.imageUrl = this.user.imageUrl ? this.user.imageUrl : this.imageUrl;
+                });
+                break;
+              case 'USER':
+                this.controller.publicUser(this.idUser).subscribe(user => {
+                  this.user = user;
+                  this.user.password = '';
+                  this.user.sex = this.user.sex ? this.user.sex : 'male';
+                  this.date = new FormControl(this.user.birthdate);
+                  this.imageUrl = this.user.imageUrl ? this.user.imageUrl : this.imageUrl;
+                });
+                break;
+              default:
+                break;
+            }
           });
         } else {
           this.controller.getInfo().subscribe(user => {

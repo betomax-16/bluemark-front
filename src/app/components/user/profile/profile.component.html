@@ -11,10 +11,22 @@
             <mat-form-field class="full-width">
                 <input type="text" matInput placeholder="Nombre" [(ngModel)]="user.name" name="name">
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" *ngIf="user.rol == 'COMPANY'">
+                <input type="text" matInput placeholder="Direcciòn" [(ngModel)]="user.address" name="address">
+            </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="user.rol == 'COMPANY'">
+                <input type="text" matInput placeholder="Telefono" [(ngModel)]="user.phone" name="phone">
+            </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="user.rol == 'COMPANY'">
+                <input type="text" matInput placeholder="CP" [(ngModel)]="user.cp" name="cp">
+            </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="user.rol == 'COMPANY'">
+                <input type="text" matInput placeholder="Giro" [(ngModel)]="user.type" name="type">
+            </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="user.rol == 'USER'">
                 <input type="text" matInput placeholder="Apellido Paterno" [(ngModel)]="user.firstLastName" name="firstlastname">
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" *ngIf="user.rol == 'USER'">
                 <input type="text" matInput placeholder="Apellidos Materno" [(ngModel)]="user.secondLastName" name="secondlastname">
             </mat-form-field>
             <mat-form-field class="full-width">
@@ -23,12 +35,12 @@
             <mat-form-field class="full-width">
                 <input type="password" matInput placeholder="Contraseña" [(ngModel)]="user.password" name="password">
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" *ngIf="user.rol == 'USER'">
                 <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha" [formControl]="date" (dateChange)="selectDate('change', $event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" *ngIf="user.rol == 'USER'">
                 <mat-select placeholder="Sexo" [(value)]="user.sex">
                   <mat-option *ngFor="let sex of sexs" [value]="sex.value">{{sex.name}}</mat-option>
                 </mat-select>

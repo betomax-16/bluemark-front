@@ -1,0 +1,40 @@
+<div class="content">
+    <h1 class="title-phone">Edición de datos personales.</h1>
+    <div>
+        <div class="photo">
+            <img matTooltip="Cambiar foto" [src]="imageUrl" alt="foto_perfil" (click)="openFile()">
+        </div>
+    </div>    
+    <form>
+        <div class="content-form">
+            <h1 class="title">Nueva empresa.</h1>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Nombre" [(ngModel)]="company.name" name="name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Direcciòn" [(ngModel)]="company.address" name="address">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Telefono" [(ngModel)]="company.phone" name="phone">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="CP" [(ngModel)]="company.cp" name="cp">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Giro" [(ngModel)]="company.type" name="type">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="email" matInput placeholder="Email" [(ngModel)]="company.email" name="email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="password" matInput placeholder="Contraseña" [(ngModel)]="company.password" name="password">
+            </mat-form-field>
+            <input #inputFile class="file" type="file" name="photo" (change)="onChangeFile($event)" accept="image/x-png,image/jpeg">
+            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="save()">
+                <i class="material-icons">
+                    done
+                </i>
+            </button>
+        </div>
+    </form>
+</div>

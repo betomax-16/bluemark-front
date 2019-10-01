@@ -23,9 +23,14 @@ import { UserGuard } from './guards/user-guard';
 
 // Controllers
 import { UserController } from './controllers/user.controller';
+import { CredentialController } from './controllers/credential.controller';
+import { CompanyController } from './controllers/company.controller';
+import { AdminController } from './controllers/admin.controller';
 import { SignupComponent } from './components/modals/signup/signup.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ListComponent } from './components/user/list/list.component';
+import { ListCompanyComponent } from './components/company/list/listCompany.component';
+import { CreateComponent } from './components/company/create/create.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { ListComponent } from './components/user/list/list.component';
     LoginComponent,
     SignupComponent,
     ProfileComponent,
-    ListComponent
+    ListComponent,
+    ListCompanyComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,10 @@ import { ListComponent } from './components/user/list/list.component';
     AdminGuard,
     CompanyGuard,
     UserGuard,
-    UserController
+    UserController,
+    CredentialController,
+    CompanyController,
+    AdminController
   ],
   entryComponents: [
     LoginComponent,
