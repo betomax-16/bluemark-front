@@ -26,11 +26,14 @@ import { UserController } from './controllers/user.controller';
 import { CredentialController } from './controllers/credential.controller';
 import { CompanyController } from './controllers/company.controller';
 import { AdminController } from './controllers/admin.controller';
+import { PromotionController } from './controllers/promotion.controller';
 import { SignupComponent } from './components/modals/signup/signup.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ListComponent } from './components/user/list/list.component';
 import { ListCompanyComponent } from './components/company/list/listCompany.component';
 import { CreateComponent } from './components/company/create/create.component';
+import { PromotionsListComponent } from './components/promotion/promotions-list/promotions-list.component';
+import { PromotionRegisterComponent } from './components/promotion/promotion-register/promotion-register.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { CreateComponent } from './components/company/create/create.component';
     ProfileComponent,
     ListComponent,
     ListCompanyComponent,
-    CreateComponent
+    CreateComponent,
+    PromotionsListComponent,
+    PromotionRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,8 @@ import { CreateComponent } from './components/company/create/create.component';
     UserController,
     CredentialController,
     CompanyController,
-    AdminController
+    AdminController,
+    PromotionController
   ],
   entryComponents: [
     LoginComponent,

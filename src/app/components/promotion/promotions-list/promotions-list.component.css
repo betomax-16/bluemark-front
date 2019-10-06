@@ -1,0 +1,31 @@
+.content-promotions {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.example-card {
+    margin-right: 15px;
+    margin-bottom: 15px;
+    max-width: 280px;
+}
+
+.example-header-image {
+    background-image: url('https://www.sccpre.cat/mypng/full/494-4948629_altavoz-icono.png');
+    background-size: cover;
+}
+
+.add {
+    position: fixed;
+    bottom: 25px;
+    right: 35px;
+    background-color: #5e3c5d;
+    z-index: 1;
+}
+
+.add:hover {
+    background-color: #472c47;
+    cursor: pointer;
+}

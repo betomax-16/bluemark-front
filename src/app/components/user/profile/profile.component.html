@@ -45,6 +45,12 @@
                   <mat-option *ngFor="let sex of sexs" [value]="sex.value">{{sex.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
+            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="promos()" *ngIf="user.rol == 'COMPANY'">
+                Promociones
+            </button>
+            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="cupones()" *ngIf="user.rol == 'USER'">
+                Cupones
+            </button>
             <input #inputFile class="file" type="file" name="photo" (change)="onChangeFile($event)" accept="image/x-png,image/jpeg">
             <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="save()">
                 <i class="material-icons">

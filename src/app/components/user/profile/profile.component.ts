@@ -6,7 +6,7 @@ import { CompanyController } from '../../../controllers/company.controller';
 import { AdminController } from '../../../controllers/admin.controller';
 import { CredentialController } from '../../../controllers/credential.controller';
 import { UploadService } from '../../../services/upload.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
               private credentialController: CredentialController,
               private uploadService: UploadService,
               private route: ActivatedRoute,
+              private router: Router,
               public notificacionSnackBar: MatSnackBar) {
     this.user = {};
   }
@@ -133,4 +134,10 @@ export class ProfileComponent implements OnInit {
       duration,
     } );
   }
+
+  promos() {
+    // this.router.navigate(['/']);
+  }
+
+  cupones() {}
 }
