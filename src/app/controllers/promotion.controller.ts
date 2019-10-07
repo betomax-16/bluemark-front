@@ -16,7 +16,6 @@ export class PromotionController {
     newHeader() {
         this.headers = new HttpHeaders();
         this.headers = this.headers
-                            .set('Content-Type', 'application/json; charset=utf-8')
                             .set('Authorization', localStorage.getItem('token'));
     }
 
@@ -29,18 +28,36 @@ export class PromotionController {
         return this.http.get<Promotion[]>(this.baseUrl + `/api/promotions`);
     }
 
-    getPromotion(promotion: Promotion) {
-        return this.http.get<Promotion>(this.baseUrl + `/api/promotions/${promotion._id}`);
+    getPromotion(id: string) {
+        return this.http.get<Promotion>(this.baseUrl + `/api/promotions/${id}`);
     }
 
-    createPromotion(promotins: Promotion) {
+    createPromotion(promotion: Promotion, image?: File) {
         this.newHeader();
-        return this.http.post<Promotion>(this.baseUrl + `/api/promotions`, {headers: this.headers});
+        const uploadData = new FormData();
+        if (image) {
+            const ext = image.name.split('.').pop();
+            uploadData.append('photo', image, image.name + '-' + Date.now() + '.' + ext);
+        }
+        // tslint:disable-next-line:forin
+        for (const key in promotion) {
+            uploadData.append(key, promotion[key]);
+        }
+        return this.http.post<Promotion>(this.baseUrl + `/api/promotions`, promotion, {headers: this.headers});
     }
 
-    updatePromotion(promotion: Promotion) {
+    updatePromotion(promotion: Promotion, image?: File) {
         this.newHeader();
-        return this.http.put<Promotion>(this.baseUrl + `/api/promotions/${promotion._id}`, {headers: this.headers});
+        const uploadData = new FormData();
+        if (image) {
+            const ext = image.name.split('.').pop();
+            uploadData.append('photo', image, image.name + '-' + Date.now() + '.' + ext);
+        }
+        // tslint:disable-next-line:forin
+        for (const key in promotion) {
+            uploadData.append(key, promotion[key]);
+        }
+        return this.http.put<Promotion>(this.baseUrl + `/api/promotions/${promotion._id}`, promotion, {headers: this.headers});
     }
 
     deletePromotion(promotion: Promotion) {

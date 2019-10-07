@@ -1,11 +1,12 @@
 export class Promotion {
     constructor(
-        name?: string,
-        namePromotion?: string,
-        description?: string,
-        idCompany?: string,
-        validity?: Date,
-        couponIssuance?: number,
+        public name?: string,
+        public namePromotion?: string,
+        public description?: string,
+        public idCompany?: string,
+        public validity?: Date,
+        public couponIssuance?: number,
+        public imagePromotion?: string,
         // tslint:disable-next-line: variable-name
         public _id?: string
     ) {}

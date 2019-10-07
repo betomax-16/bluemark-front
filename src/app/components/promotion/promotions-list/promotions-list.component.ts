@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Promotion } from '../../../models/promotion';
 import { PromotionController } from '../../../controllers/promotion.controller';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-promotions-list',
@@ -10,7 +12,9 @@ import { PromotionController } from '../../../controllers/promotion.controller';
 export class PromotionsListComponent implements OnInit {
   promotions: Promotion[];
 
-  constructor(private promotionController: PromotionController) { }
+  constructor(private promotionController: PromotionController,
+              private router: Router,
+              private notificacionSnackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.promotionController.getMyPromotions().subscribe(promotions => {
@@ -19,6 +23,29 @@ export class PromotionsListComponent implements OnInit {
   }
 
   newPromotion() {
-    alert('Hola');
+    this.router.navigate(['company/promotion/new']);
+  }
+
+  editPromotion(promotion: Promotion) {
+    this.router.navigate(['company/promotion/edit/' + promotion._id]);
+  }
+
+  deletePromotion(promotion: Promotion) {
+    if (confirm('¿Esta seguro de eliminar la promoción ' + promotion.namePromotion)) {
+      this.promotionController.deletePromotion(promotion).subscribe(prom => {
+        for (let index = 0; index < this.promotions.length; index++) {
+          if (this.promotions[index]._id === promotion._id) {
+            this.promotions.splice(index, 1);
+          }
+        }
+        this.showMessage('promoción eliminada', 3000);
+      });
+    }
+  }
+
+  showMessage(message: string, duration: number) {
+    this.notificacionSnackBar.open( message, '', {
+      duration,
+    } );
   }
 }
