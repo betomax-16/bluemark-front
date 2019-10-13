@@ -135,8 +135,8 @@ export class ProfileComponent implements OnInit {
     } );
   }
 
-  promos() {
-    // this.router.navigate(['/']);
+  promos(id: string) {
+    this.router.navigate(['company/' + id + '/promotion']);
   }
 
   cupones() {}

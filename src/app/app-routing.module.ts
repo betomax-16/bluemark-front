@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard, UserGuard] },
   { path: 'user/:id', component: ProfileComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'company/promotion', component: PromotionsListComponent, canActivate: [AuthGuard, CompanyGuard] },
+  { path: 'company/:id/promotion', component: PromotionsListComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'company/promotion/new', component: PromotionRegisterComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'company/promotion/edit/:id', component: PromotionRegisterComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'admin/user', component: ListComponent, canActivate: [AuthGuard, AdminGuard] },

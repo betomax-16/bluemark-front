@@ -1,6 +1,6 @@
 <div class="content">
     <h1 class="title-phone">Edición de datos personales.</h1>
-    <div>
+    <div *ngIf="myRol == 'COMPANY'">
         <div class="photo">
             <img matTooltip="Cambiar foto" [src]="imageUrl" alt="foto_perfil" (click)="openFile()">
         </div>

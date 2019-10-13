@@ -29,6 +29,7 @@ export class PromotionRegisterComponent implements OnInit {
       if (params.id) {
         this.promotionController.getPromotion(params.id).subscribe(prom => {
           this.promotion = prom;
+          this.imageUrl = this.promotion.imagePromotion;
         });
       } else {
         this.promotion = new Promotion();

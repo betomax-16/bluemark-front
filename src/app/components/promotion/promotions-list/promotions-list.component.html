@@ -5,8 +5,8 @@
             <mat-card-title>{{promotion.namePromotion}}</mat-card-title>
             <mat-card-subtitle>{{promotion.name}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image *ngIf="!promotion.imageUrl" src="https://www.promotienda.es/wp-content/uploads/2015/03/promocion-punto-venta-500x250.jpg" alt="Promotion">
-        <img mat-card-image *ngIf="promotion.imageUrl" [src]="promotion.imageUrl" alt="Promotion">
+        <img mat-card-image *ngIf="!promotion.imagePromotion" src="https://www.promotienda.es/wp-content/uploads/2015/03/promocion-punto-venta-500x250.jpg" alt="Promotion">
+        <img mat-card-image *ngIf="promotion.imagePromotion" [src]="promotion.imagePromotion" alt="Promotion">
         <mat-card-content>
             <p>{{promotion.description}}</p>
         </mat-card-content>

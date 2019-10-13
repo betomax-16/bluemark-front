@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Promotion } from '../../../models/promotion';
 import { PromotionController } from '../../../controllers/promotion.controller';
-import { Router } from '@angular/router';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -14,12 +14,22 @@ export class PromotionsListComponent implements OnInit {
 
   constructor(private promotionController: PromotionController,
               private router: Router,
+              private route: ActivatedRoute,
               private notificacionSnackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.promotionController.getMyPromotions().subscribe(promotions => {
-      this.promotions = promotions;
-    });
+    this.route.params.subscribe(
+      params => {
+        if (params.id) {
+          this.promotionController.getPromotionsByCompany(params.id).subscribe(promotion => {
+            this.promotions = promotion;
+          });
+        } else {
+          this.promotionController.getMyPromotions().subscribe(promotions => {
+            this.promotions = promotions;
+          });
+        }
+      });
   }
 
   newPromotion() {

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UploadService } from 'src/app/services/upload.service';
 import { CompanyController } from 'src/app/controllers/company.controller';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -12,6 +13,7 @@ import { CompanyController } from 'src/app/controllers/company.controller';
 })
 export class CreateComponent implements OnInit {
 
+  myRol: string;
   company: Company;
   idUser: string = null;
   @ViewChild('inputFile', {static: false}) myDiv: ElementRef;
@@ -22,12 +24,13 @@ export class CreateComponent implements OnInit {
   constructor(private companyController: CompanyController,
               private uploadService: UploadService,
               private router: Router,
+              private authService: AuthService,
               public notificacionSnackBar: MatSnackBar) {
     this.company = new Company();
   }
 
   ngOnInit() {
-
+    this.myRol = this.authService.getRol();
   }
 
   save() {
