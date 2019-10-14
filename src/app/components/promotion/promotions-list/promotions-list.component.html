@@ -11,8 +11,9 @@
             <p>{{promotion.description}}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button (click)="editPromotion(promotion)">Editar</button>
-            <button mat-button (click)="deletePromotion(promotion)">Eliminar</button>
+            <button mat-button *ngIf="isSearch" (click)="showPromotion(promotion)">Ver</button>
+            <button mat-button *ngIf="!isSearch" (click)="editPromotion(promotion)">Editar</button>
+            <button mat-button *ngIf="!isSearch" (click)="deletePromotion(promotion)">Eliminar</button>
         </mat-card-actions>
     </mat-card>
 </div>

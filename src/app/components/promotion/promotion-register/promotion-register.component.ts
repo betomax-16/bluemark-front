@@ -4,6 +4,7 @@ import { PromotionController } from '../../../controllers/promotion.controller';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-promotion-register',
@@ -12,6 +13,8 @@ import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
 })
 export class PromotionRegisterComponent implements OnInit {
 
+  isUser = false;
+  isSearch = false;
   promotion: Promotion;
   date = new FormControl(new Date());
   imageUrl: string|ArrayBuffer = 'https://www.promotienda.es/wp-content/uploads/2015/03/promocion-punto-venta-500x250.jpg';
@@ -20,15 +23,23 @@ export class PromotionRegisterComponent implements OnInit {
   constructor(private promotionController: PromotionController,
               private router: Router,
               private route: ActivatedRoute,
+              private authService: AuthService,
               private notificacionSnackBar: MatSnackBar) {
                 this.promotion = new Promotion();
               }
 
   ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.isUser = this.authService.getRol() === 'USER';
+    }
+    if (!(/^\/company\/promotion\/edit\/\S+/.test(this.router.url) || /^\/company\/promotion\/new$/.test(this.router.url))) {
+      this.isSearch = true;
+    }
     this.route.params.subscribe(params => {
       if (params.id) {
         this.promotionController.getPromotion(params.id).subscribe(prom => {
           this.promotion = prom;
+          this.date.setValue(this.promotion.validity);
           this.imageUrl = this.promotion.imagePromotion;
         });
       } else {
@@ -89,6 +100,10 @@ export class PromotionRegisterComponent implements OnInit {
     reader.onload = (event) => {
       this.imageUrl = reader.result;
     };
+  }
+
+  createCoupon() {
+    alert(this.promotion._id);
   }
 
   showMessage(message: string, duration: number) {

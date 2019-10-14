@@ -1,6 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Promotion} from '../models/promotion';
 
 
@@ -68,5 +68,10 @@ export class PromotionController {
     deletePromotion(promotion: Promotion) {
         this.newHeader();
         return this.http.delete<Promotion>(this.baseUrl + `/api/promotions/${promotion._id}`, {headers: this.headers});
+    }
+
+    search(text: string) {
+        const params = new HttpParams().set('text', text);
+        return this.http.get<Promotion[]>(this.baseUrl + `/api/search`, { params });
     }
 }

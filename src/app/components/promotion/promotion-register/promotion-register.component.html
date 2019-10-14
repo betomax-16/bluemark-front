@@ -3,27 +3,34 @@
         <div class="content-form">
             <h1 class="title">Nueva promoción.</h1>
             <mat-form-field class="full-width">
-                <input type="text" matInput placeholder="Promoción" [(ngModel)]="promotion.namePromotion" name="namePromotion">
+                <input [disabled]="isSearch" type="text" matInput placeholder="Promoción" [(ngModel)]="promotion.namePromotion" name="namePromotion">
             </mat-form-field>
             <mat-form-field class="full-width">
-                <textarea matInput placeholder="Descripción"[(ngModel)]="promotion.description" name="description"></textarea>
+                <textarea [disabled]="isSearch" matInput placeholder="Descripción"[(ngModel)]="promotion.description" name="description"></textarea>
             </mat-form-field>
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" *ngIf="!isSearch">
                 <input matInput [matDatepicker]="picker" placeholder="Vigencia" [formControl]="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="isSearch">
+                <input [disabled]="isSearch" type="text" matInput placeholder="Cupones a emitir" [(ngModel)]="date.value" name="date">
+            </mat-form-field>
             <mat-form-field class="full-width">
-                <input type="text" matInput placeholder="Cupones a emitir" [(ngModel)]="promotion.couponIssuance" name="couponIssuance">
+                <input [disabled]="isSearch" type="text" matInput placeholder="Cupones a emitir" [(ngModel)]="promotion.couponIssuance" name="couponIssuance">
             </mat-form-field>
             <div class="photo">
-                <img matTooltip="Cambiar foto" [src]="imageUrl" *ngIf="imageUrl" alt="foto_perfil" (click)="openFile()">
+                <img matTooltip="Cambiar foto" [src]="imageUrl" alt="foto_perfil" *ngIf="!isSearch" (click)="openFile()">
+                <img [src]="imageUrl" alt="foto_perfil" *ngIf="isSearch">
             </div>
             <input #file class="file" type="file" accept='image/*' name="photo" (change)="preview(file.files)" accept="image/x-png,image/jpeg">
-            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" (click)="save(file.files)">
+            <button class="button ok" mat-stroked-button matTooltip="Actualizar datos" color="primary" *ngIf="!isSearch" (click)="save(file.files)">
                 <i class="material-icons">
                     done
                 </i>
+            </button>
+            <button class="button ok" mat-stroked-button color="primary" *ngIf="isUser" (click)="createCoupon()">
+                Guardar cupon
             </button>
         </div>
     </form>

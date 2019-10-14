@@ -15,6 +15,8 @@ import {PromotionsListComponent} from './components/promotion/promotions-list/pr
 import {PromotionRegisterComponent} from './components/promotion/promotion-register/promotion-register.component';
 
 const routes: Routes = [
+  { path: 'search', component: PromotionsListComponent },
+  { path: 'promotion/:id', component: PromotionRegisterComponent },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard, UserGuard] },
   { path: 'user/:id', component: ProfileComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'company/promotion', component: PromotionsListComponent, canActivate: [AuthGuard, CompanyGuard] },
