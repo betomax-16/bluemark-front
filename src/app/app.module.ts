@@ -21,6 +21,7 @@ import { AdminGuard } from './guards/admin-guard';
 import { CompanyGuard } from './guards/company-guard';
 import { UserGuard } from './guards/user-guard';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 // Controllers
 import { UserController } from './controllers/user.controller';
@@ -37,6 +38,7 @@ import { CreateComponent } from './components/company/create/create.component';
 import { PromotionsListComponent } from './components/promotion/promotions-list/promotions-list.component';
 import { PromotionRegisterComponent } from './components/promotion/promotion-register/promotion-register.component';
 import { CouponListComponent } from './components/coupon/coupon-list/coupon-list.component';
+import { CheckComponent } from './components/coupon/check/check.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { CouponListComponent } from './components/coupon/coupon-list/coupon-list
     CreateComponent,
     PromotionsListComponent,
     PromotionRegisterComponent,
-    CouponListComponent
+    CouponListComponent,
+    CheckComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { CouponListComponent } from './components/coupon/coupon-list/coupon-list
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    ZXingScannerModule
   ],
   providers: [
     ShareLoginService,

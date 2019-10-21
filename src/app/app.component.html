@@ -29,6 +29,7 @@
                 <a mat-list-item *ngIf="rol == 'ADMIN'" routerLink="admin/user">Usuarios</a>
                 <a mat-list-item *ngIf="rol == 'ADMIN'" routerLink="admin/company">Empresas</a>
                 <a mat-list-item *ngIf="rol == 'COMPANY'" routerLink="company/promotion">Promociones</a>
+                <a mat-list-item *ngIf="rol == 'COMPANY'" routerLink="coupon/check">Redimir</a>
                 <a mat-list-item routerLink="user/profile">Perfil</a>
                 <a mat-list-item *ngIf="rol == 'USER'" routerLink="coupons">Cuponera</a>
             </mat-nav-list>

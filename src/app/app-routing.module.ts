@@ -14,10 +14,12 @@ import {CreateComponent} from './components/company/create/create.component';
 import {PromotionsListComponent} from './components/promotion/promotions-list/promotions-list.component';
 import {PromotionRegisterComponent} from './components/promotion/promotion-register/promotion-register.component';
 import {CouponListComponent} from './components/coupon/coupon-list/coupon-list.component';
+import {CheckComponent} from './components/coupon/check/check.component';
 
 const routes: Routes = [
   { path: 'search', component: PromotionsListComponent },
   { path: 'coupons', component: CouponListComponent, canActivate: [AuthGuard, UserGuard] },
+  { path: 'coupon/check', component: CheckComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'promotion/:id', component: PromotionRegisterComponent },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard, UserGuard] },
   { path: 'user/:id', component: ProfileComponent, canActivate: [AuthGuard, AdminGuard] },

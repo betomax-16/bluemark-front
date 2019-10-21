@@ -17,4 +17,4 @@
         </mat-card-actions>
     </mat-card>
 </div>
-<button class="add" mat-fab (click)="newPromotion()"><i class="material-icons">add</i></button>
+<button class="add" mat-fab *ngIf="!isSearch" (click)="newPromotion()"><i class="material-icons">add</i></button>
