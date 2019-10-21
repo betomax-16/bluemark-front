@@ -20,6 +20,7 @@ import { NotAuthGuard } from './guards/notAuth-guard';
 import { AdminGuard } from './guards/admin-guard';
 import { CompanyGuard } from './guards/company-guard';
 import { UserGuard } from './guards/user-guard';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 // Controllers
 import { UserController } from './controllers/user.controller';
@@ -27,6 +28,7 @@ import { CredentialController } from './controllers/credential.controller';
 import { CompanyController } from './controllers/company.controller';
 import { AdminController } from './controllers/admin.controller';
 import { PromotionController } from './controllers/promotion.controller';
+import { CouponController } from './controllers/coupon.controller';
 import { SignupComponent } from './components/modals/signup/signup.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ListComponent } from './components/user/list/list.component';
@@ -34,6 +36,7 @@ import { ListCompanyComponent } from './components/company/list/listCompany.comp
 import { CreateComponent } from './components/company/create/create.component';
 import { PromotionsListComponent } from './components/promotion/promotions-list/promotions-list.component';
 import { PromotionRegisterComponent } from './components/promotion/promotion-register/promotion-register.component';
+import { CouponListComponent } from './components/coupon/coupon-list/coupon-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { PromotionRegisterComponent } from './components/promotion/promotion-reg
     ListCompanyComponent,
     CreateComponent,
     PromotionsListComponent,
-    PromotionRegisterComponent
+    PromotionRegisterComponent,
+    CouponListComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,7 @@ import { PromotionRegisterComponent } from './components/promotion/promotion-reg
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
+    NgxQRCodeModule
   ],
   providers: [
     ShareLoginService,
@@ -70,7 +75,8 @@ import { PromotionRegisterComponent } from './components/promotion/promotion-reg
     CredentialController,
     CompanyController,
     AdminController,
-    PromotionController
+    PromotionController,
+    CouponController
   ],
   entryComponents: [
     LoginComponent,

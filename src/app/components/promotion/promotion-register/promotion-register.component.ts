@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
 import { AuthService } from '../../../services/auth.service';
+import { CouponController } from '../../../controllers/coupon.controller';
 
 @Component({
   selector: 'app-promotion-register',
@@ -21,6 +22,7 @@ export class PromotionRegisterComponent implements OnInit {
   @ViewChild('file', {static: false}) myDiv: ElementRef;
 
   constructor(private promotionController: PromotionController,
+              private couponController: CouponController,
               private router: Router,
               private route: ActivatedRoute,
               private authService: AuthService,
@@ -102,8 +104,14 @@ export class PromotionRegisterComponent implements OnInit {
     };
   }
 
-  createCoupon() {
-    alert(this.promotion._id);
+  createCoupon(idPromotion: string) {
+    this.couponController.createCoupon(idPromotion).subscribe(coupon => {
+      if (coupon.message) {
+        this.showMessage(coupon.message, 3000);
+      } else {
+        this.showMessage('Cupon almacenado exitosamente.', 3000);
+      }
+    });
   }
 
   showMessage(message: string, duration: number) {

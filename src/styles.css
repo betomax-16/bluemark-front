@@ -39,3 +39,9 @@ body {
     border-radius: 15px;
     border: 2px solid #fff;
 }
+
+.qr {
+    position: absolute;
+    left: 25%;
+    top: 4%;
+}

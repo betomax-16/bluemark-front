@@ -1,3 +1,4 @@
+import { Company } from './company';
 export class Promotion {
     constructor(
         public name?: string,
@@ -9,6 +10,7 @@ export class Promotion {
         public couponIssuance?: number,
         public imagePromotion?: string,
         // tslint:disable-next-line: variable-name
-        public _id?: string
+        public _id?: string,
+        public  company?: Company,
     ) {}
 }

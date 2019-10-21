@@ -1,0 +1,23 @@
+<div class="content-promotions">
+    <mat-card class="example-card" *ngFor="let coupon of coupons">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+                <img *ngIf="!coupon.promotion.company.imageUrl" src="https://www.sccpre.cat/mypng/full/494-4948629_altavoz-icono.png" alt="Company">
+                <img *ngIf="coupon.promotion.company.imageUrl" [src]="coupon.promotion.company.imageUrl" alt="Company">
+            </div>
+            <mat-card-title>{{coupon.promotion.namePromotion}}</mat-card-title>
+            <mat-card-subtitle>{{coupon.promotion.company.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="content-images">
+            <img mat-card-image *ngIf="!coupon.promotion.imagePromotion" src="https://www.promotienda.es/wp-content/uploads/2015/03/promocion-punto-venta-500x250.jpg" alt="Promotion">
+            <img mat-card-image *ngIf="coupon.promotion.imagePromotion" [src]="coupon.promotion.imagePromotion" alt="Promotion">
+            <ngx-qrcode [qrc-value] = "coupon._id" qrc-class = "qr" qrc-errorCorrectionLevel = "L"></ngx-qrcode>
+        </div>
+        <mat-card-content>
+            <p>{{coupon.promotion.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="deleteCoupon(coupon)">Eliminar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
