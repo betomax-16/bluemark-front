@@ -9,6 +9,7 @@ export class Company {
         public imageUrl?: string,
         public password?: string,
         // tslint:disable-next-line: variable-name
-        public _id?: string
+        public _id?: string,
+        public email?: string
     ) {}
 }

@@ -55,7 +55,7 @@ import { CheckComponent } from './components/coupon/check/check.component';
     CheckComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

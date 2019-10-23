@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { Promotion } from '../../../models/promotion';
 import { PromotionController } from '../../../controllers/promotion.controller';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
 import { AuthService } from '../../../services/auth.service';
 import { CouponController } from '../../../controllers/coupon.controller';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-promotion-register',
@@ -26,12 +27,13 @@ export class PromotionRegisterComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private authService: AuthService,
-              private notificacionSnackBar: MatSnackBar) {
+              private notificacionSnackBar: MatSnackBar,
+              @Inject(PLATFORM_ID) private platformId: any) {
                 this.promotion = new Promotion();
               }
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
+    if (isPlatformBrowser(this.platformId) && localStorage.getItem('token')) {
       this.isUser = this.authService.getRol() === 'USER';
     }
     if (!(/^\/company\/promotion\/edit\/\S+/.test(this.router.url) || /^\/company\/promotion\/new$/.test(this.router.url))) {

@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Inject, PLATFORM_ID} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Coupon} from '../models/coupon';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Injectable()
@@ -9,15 +10,18 @@ export class CouponController {
     private headers: HttpHeaders;
     private baseUrl: string;
 
-    constructor(private http: HttpClient) {
-        this.baseUrl = 'https://bluemark.azurewebsites.net/';
+    constructor(private http: HttpClient,
+                @Inject(PLATFORM_ID) private platformId: any) {
+        this.baseUrl = 'https://bluemark.azurewebsites.net';
     }
 
     newHeader() {
-        this.headers = new HttpHeaders();
-        this.headers = this.headers
-                            .set('Content-Type', 'application/json; charset=utf-8')
-                            .set('Authorization', localStorage.getItem('token'));
+        if (isPlatformBrowser(this.platformId)) {
+            this.headers = new HttpHeaders();
+            this.headers = this.headers
+                                .set('Content-Type', 'application/json; charset=utf-8')
+                                .set('Authorization', localStorage.getItem('token'));
+        }
     }
 
     getMyCoupons() {

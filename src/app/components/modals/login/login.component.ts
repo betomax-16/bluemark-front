@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatDialog } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -7,6 +7,7 @@ import { UserController } from '../../../controllers/user.controller';
 import { ShareLoginService } from '../../../services/shareLogin.service';
 import { User } from 'src/app/models/user';
 import { AuthService } from '../../../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 @Component({
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
               public shareLoginService: ShareLoginService,
               public notificacionSnackBar: MatSnackBar,
               public authService: AuthService,
-              @Inject( MAT_DIALOG_DATA ) public data: any) { }
+              @Inject( MAT_DIALOG_DATA ) public data: any,
+              @Inject(PLATFORM_ID) private platformId: any) { }
 
   ngOnInit() {
   }
@@ -36,7 +38,9 @@ export class LoginComponent implements OnInit {
       const user: User = res;
       this.showMessage('Login exitoso.', 2000);
       this.dialogRef.close(user);
-      localStorage.setItem('token', r.token);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('token', r.token);
+      }
       const rol: string = this.authService.getRol();
       this.shareLoginService.sendLogin(true);
       this.shareLoginService.sendUser(rol);

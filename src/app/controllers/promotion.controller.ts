@@ -1,7 +1,8 @@
 
-import {Injectable} from '@angular/core';
+import {Injectable, Inject, PLATFORM_ID} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Promotion} from '../models/promotion';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Injectable()
@@ -9,14 +10,17 @@ export class PromotionController {
     private headers: HttpHeaders;
     private baseUrl: string;
 
-    constructor(private http: HttpClient) {
-        this.baseUrl = 'https://bluemark.azurewebsites.net/';
+    constructor(private http: HttpClient,
+                @Inject(PLATFORM_ID) private platformId: any) {
+        this.baseUrl = 'https://bluemark.azurewebsites.net';
     }
 
     newHeader() {
-        this.headers = new HttpHeaders();
-        this.headers = this.headers
-                            .set('Authorization', localStorage.getItem('token'));
+        if (isPlatformBrowser(this.platformId)) {
+            this.headers = new HttpHeaders();
+            this.headers = this.headers
+                                .set('Authorization', localStorage.getItem('token'));
+        }
     }
 
     getMyPromotions() {
