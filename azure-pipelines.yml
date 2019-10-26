@@ -50,13 +50,13 @@ steps:
 - task: AzureRmWebAppDeployment@3
   displayName: 'Azure App Service Deploy: website'
   inputs:
-    azureSubscription: 'Subscription 1'
+    azureSubscription: 'Visual Studio Enterprise – MPN'
 
-    WebAppName: website
+    WebAppName: BlueMark
 
     DeployToSlotFlag: true
 
-    ResourceGroupName: Temp
+    ResourceGroupName: BUAP
 
     SlotName: master
 
