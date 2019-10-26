@@ -11,29 +11,15 @@ pool:
 
 steps:
 - task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
   displayName: 'Install Node.js'
-  inputs:
-    versionSpec: 10.x
 
-
-- task: Npm@1
-  displayName: 'npm install angular cli'
-  inputs:
-    command: custom
-
-    verbose: false
-
-    customCommand: 'install @angular/cli -g'
-
-
-- task: Npm@1
-  displayName: 'npm install packages'
-  inputs:
-    verbose: false
-
-
-- script: 'npm run build:ssr'
-  displayName: 'build the project'
+- script: |
+    npm install -g @angular/cli
+    npm install
+    npm run build:ssr
+  displayName: 'npm install and build'
 
 - task: CopyFiles@2
   displayName: 'Copy dist files to staging'
