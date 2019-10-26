@@ -1,43 +1,45 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
-            <div class="logo">
-                    <button mat-icon-button (click)="snav.toggle()" *ngIf="logged"><mat-icon>menu</mat-icon></button>
-                    <h1 class="example-app-name"><a routerLink="/">BlueMark</a></h1>
-                </div>
-                <div class="search-container">
-                    <form class="form-search">
-                        <input class="full-width" type="text" matInput placeholder="Buscar" [(ngModel)]="searchText" name="search">
-                        <button class="search" mat-stroked-button color="primary" (click)="search()">
-                            <i class="material-icons">
-                                search
-                            </i>
-                        </button>
-                    </form>
-                </div>
-                <div class="botonera">
-                    <!-- <span *ngIf="logged">Hola {{Username}}! </span> -->
-                    <span class="button logout" (click)="logout()" *ngIf="logged" >Salir</span>
-                    <span class="button login" (click)="login()" *ngIf="!logged">Ingresar</span>
-                    <span class="button signup" (click)="signup()" *ngIf="!logged">Registro</span>
-                </div>
-    </mat-toolbar>
-  
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-            <mat-nav-list>
-                <div class="nav-list-logout" (click)="logout()" *ngIf="logged"><span>Salir</span></div>
-                <a mat-list-item *ngIf="rol == 'ADMIN'" routerLink="admin/user">Usuarios</a>
-                <a mat-list-item *ngIf="rol == 'ADMIN'" routerLink="admin/company">Empresas</a>
-                <a mat-list-item *ngIf="rol == 'COMPANY'" routerLink="company/promotion">Promociones</a>
-                <a mat-list-item *ngIf="rol == 'COMPANY'" routerLink="coupon/check">Redimir</a>
-                <a mat-list-item routerLink="user/profile">Perfil</a>
-                <a mat-list-item *ngIf="rol == 'USER'" routerLink="coupons">Cuponera</a>
-            </mat-nav-list>
-        </mat-sidenav>
-  
-        <mat-sidenav-content (click)="snav.close()">
-                <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-</div>
-  
+        <mat-toolbar color="primary" class="example-toolbar">
+                <div class="logo">
+                        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+                        <h1 class="example-app-name"><a routerLink="/">BlueMark</a></h1>
+                    </div>
+                    <div class="search-container">
+                        <form class="form-search">
+                            <input class="full-width" type="text" matInput placeholder="Buscar" [(ngModel)]="searchText" name="search">
+                            <button class="search" mat-stroked-button color="primary" (click)="search()">
+                                <i class="material-icons">
+                                    search
+                                </i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="botonera">
+                        <!-- <span *ngIf="logged">Hola {{Username}}! </span> -->
+                        <span class="button logout" (click)="logout()" *ngIf="logged" >Salir</span>
+                        <span class="button login" (click)="login()" *ngIf="!logged">Ingresar</span>
+                        <span class="button signup" (click)="signup()" *ngIf="!logged">Registro</span>
+                    </div>
+        </mat-toolbar>
+      
+        <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+            <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <mat-nav-list>
+                    <div class="nav-list-logout" (click)="login()" *ngIf="!logged"><span>Ingresar</span></div>
+                    <div class="nav-list-logout" (click)="signup()" *ngIf="!logged"><span>Registro</span></div>
+                    <div class="nav-list-logout" (click)="logout()" *ngIf="logged"><span>Salir</span></div>
+                    <a mat-list-item *ngIf="logged && rol == 'ADMIN'" routerLink="admin/user">Usuarios</a>
+                    <a mat-list-item *ngIf="logged && rol == 'ADMIN'" routerLink="admin/company">Empresas</a>
+                    <a mat-list-item *ngIf="logged && rol == 'COMPANY'" routerLink="company/promotion">Promociones</a>
+                    <a mat-list-item *ngIf="logged && rol == 'COMPANY'" routerLink="coupon/check">Redimir</a>
+                    <a mat-list-item *ngIf="logged" routerLink="user/profile">Perfil</a>
+                    <a mat-list-item *ngIf="logged && rol == 'USER'" routerLink="coupons">Cuponera</a>
+                </mat-nav-list>
+            </mat-sidenav>
+      
+            <mat-sidenav-content (click)="snav.close()">
+                    <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+      
