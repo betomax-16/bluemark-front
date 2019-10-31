@@ -10,7 +10,7 @@ export class UserController {
     private baseUrl: string;
 
     constructor(private http: HttpClient) {
-        this.baseUrl = 'http://localhost:3000';
+        this.baseUrl = 'https://bluemark.azurewebsites.net';
     }
 
     newHeader() {

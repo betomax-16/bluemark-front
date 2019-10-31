@@ -12,6 +12,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button mat-button *ngIf="isSearch" (click)="showPromotion(promotion)">Ver</button>
+            <button mat-button *ngIf="!isSearch" (click)="showDashboard(promotion)">Graficas</button>
             <button mat-button *ngIf="!isSearch" (click)="editPromotion(promotion)">Editar</button>
             <button mat-button *ngIf="!isSearch" (click)="deletePromotion(promotion)">Eliminar</button>
         </mat-card-actions>

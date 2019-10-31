@@ -14,7 +14,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="full-width" *ngIf="isSearch">
-                <input [disabled]="isSearch" type="text" matInput placeholder="Cupones a emitir" [(ngModel)]="date.value" name="date">
+                <input [disabled]="isSearch" type="text" matInput placeholder="Cupones a emitir" [value]="date.value" name="date">
             </mat-form-field>
             <mat-form-field class="full-width">
                 <input [disabled]="isSearch" type="text" matInput placeholder="Cupones a emitir" [(ngModel)]="promotion.couponIssuance" name="couponIssuance">

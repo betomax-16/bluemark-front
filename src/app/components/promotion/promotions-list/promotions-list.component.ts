@@ -69,6 +69,10 @@ export class PromotionsListComponent implements OnInit {
     this.router.navigate(['promotion/' + promotion._id]);
   }
 
+  showDashboard(promotion: Promotion) {
+    this.router.navigate([`company/promotion/${promotion._id}/dashboard`]);
+  }
+
   showMessage(message: string, duration: number) {
     this.notificacionSnackBar.open( message, '', {
       duration,

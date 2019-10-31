@@ -9,6 +9,8 @@ import { LoginComponent } from './components/modals/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartjsModule } from '@ctrl/ngx-chartjs';
+
 
 // Providers
 import { ShareLoginService } from './services/shareLogin.service';
@@ -39,6 +41,7 @@ import { PromotionsListComponent } from './components/promotion/promotions-list/
 import { PromotionRegisterComponent } from './components/promotion/promotion-register/promotion-register.component';
 import { CouponListComponent } from './components/coupon/coupon-list/coupon-list.component';
 import { CheckComponent } from './components/coupon/check/check.component';
+import { DashboardComponent } from './components/company/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { CheckComponent } from './components/coupon/check/check.component';
     PromotionsListComponent,
     PromotionRegisterComponent,
     CouponListComponent,
-    CheckComponent
+    CheckComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,8 @@ import { CheckComponent } from './components/coupon/check/check.component';
     MaterialModule,
     HttpClientModule,
     NgxQRCodeModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    ChartjsModule
   ],
   providers: [
     ShareLoginService,

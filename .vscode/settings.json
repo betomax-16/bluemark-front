@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/1f7c9d61-9b4d-4f57-ba1b-865e5c9bfcd3/resourceGroups/BUAP/providers/Microsoft.Web/sites/BlueMarkFront",
+    "appService.deploySubpath": "dist/BlueMark"
+}

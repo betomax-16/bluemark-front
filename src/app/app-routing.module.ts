@@ -15,6 +15,7 @@ import {PromotionsListComponent} from './components/promotion/promotions-list/pr
 import {PromotionRegisterComponent} from './components/promotion/promotion-register/promotion-register.component';
 import {CouponListComponent} from './components/coupon/coupon-list/coupon-list.component';
 import {CheckComponent} from './components/coupon/check/check.component';
+import {DashboardComponent} from './components/company/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'search', component: PromotionsListComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'company/:id/promotion', component: PromotionsListComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'company/promotion/new', component: PromotionRegisterComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'company/promotion/edit/:id', component: PromotionRegisterComponent, canActivate: [AuthGuard, CompanyGuard] },
+  { path: 'company/promotion/:id/dashboard', component: DashboardComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'admin/user', component: ListComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'admin/company', component: ListCompanyComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'admin/company/new', component: CreateComponent, canActivate: [AuthGuard, AdminGuard] },
