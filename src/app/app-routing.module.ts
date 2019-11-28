@@ -16,8 +16,10 @@ import {PromotionRegisterComponent} from './components/promotion/promotion-regis
 import {CouponListComponent} from './components/coupon/coupon-list/coupon-list.component';
 import {CheckComponent} from './components/coupon/check/check.component';
 import {DashboardComponent} from './components/company/dashboard/dashboard.component';
+import {LandingComponent} from './components/home/landing/landing.component';
 
 const routes: Routes = [
+  { path: '', component: LandingComponent },
   { path: 'search', component: PromotionsListComponent },
   { path: 'coupons', component: CouponListComponent, canActivate: [AuthGuard, UserGuard] },
   { path: 'coupon/check', component: CheckComponent, canActivate: [AuthGuard, CompanyGuard] },

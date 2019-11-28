@@ -42,6 +42,7 @@ import { PromotionRegisterComponent } from './components/promotion/promotion-reg
 import { CouponListComponent } from './components/coupon/coupon-list/coupon-list.component';
 import { CheckComponent } from './components/coupon/check/check.component';
 import { DashboardComponent } from './components/company/dashboard/dashboard.component';
+import { LandingComponent } from './components/home/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { DashboardComponent } from './components/company/dashboard/dashboard.com
     PromotionRegisterComponent,
     CouponListComponent,
     CheckComponent,
-    DashboardComponent
+    DashboardComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

@@ -96,6 +96,14 @@
     transform: scale(1);
   }
 
+  .menu-button{
+    display: initial;
+  }
+
+  .menu-show:hover{
+    cursor: pointer;
+  }
+
   .login,.logout,.signup{
     display: none;    
   }
@@ -166,6 +174,9 @@
   .login,.logout,.signup{
     display: initial;
   }
+  .menu-button{
+    display: none;
+  }
   .search-container {
     width: 60%;
   }
@@ -182,6 +193,9 @@
   .login,.logout,.signup{
     display: initial;
   }
+  .menu-button{
+    display: none;
+  }
   .search-container {
     width: 60%;
   }
@@ -197,6 +211,9 @@
   }
   .login,.logout,.signup{
     display: initial;
+  }
+  .menu-button{
+    display: none;
   }
   .search-container {
     width: 60%;
